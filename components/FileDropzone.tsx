@@ -47,7 +47,7 @@ const FileDropzone: React.FC<FileDropzoneProps> = ({ onFileSelect, error }) => {
     fileInputRef.current?.click();
   };
 
-  const acceptTypes = 'application/pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,image/jpeg,image/png,image/webp';
+  const acceptTypes = 'application/pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,image/jpeg,image/png,image/webp,.xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
 
   return (
     <div className="flex-grow flex flex-col justify-center items-center text-center">
@@ -79,7 +79,7 @@ const FileDropzone: React.FC<FileDropzoneProps> = ({ onFileSelect, error }) => {
                 <button type="button" className="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-blue-500 transition-all">
                     Selecione os arquivos
                 </button>
-                 <p className="text-xs text-gray-500 pt-2">Suporta PDF, Word e Imagens (JPG, PNG, WebP)</p>
+                 <p className="text-xs text-gray-500 pt-2">Suporta PDF, Word, Excel e Imagens (JPG, PNG, WebP)</p>
             </div>
         </div>
         {error && <p className="mt-4 text-red-400 bg-red-900/50 px-4 py-2 rounded-md">{error}</p>}
