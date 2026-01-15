@@ -5,3 +5,10 @@ export interface PageInfo {
     rotation: number;
     thumbnailUrl: string;
 }
+
+export interface ImageInfo {
+    id: string;
+    name: string;
+    thumbnailUrl: string;
+    rotation: number;
+}
