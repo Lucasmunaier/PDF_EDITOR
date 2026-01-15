@@ -35,13 +35,14 @@ const App: React.FC = () => {
             setPdfDoc(doc);
             
             // Load with pdf.js for rendering thumbnails
-            const pdfJsDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+            const pdfJsDoc = await pdfjsLib.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
             const numPages = pdfJsDoc.numPages;
             const pages: PageInfo[] = [];
 
             for (let i = 0; i < numPages; i++) {
                 const page = await pdfJsDoc.getPage(i + 1);
-                const viewport = page.getViewport({ scale: 0.5 });
+                // Crie o viewport com rotação 0 para obter a orientação original.
+                const viewport = page.getViewport({ scale: 0.5, rotation: 0 });
                 const canvas = document.createElement('canvas');
                 const context = canvas.getContext('2d');
                 canvas.height = viewport.height;
@@ -52,7 +53,8 @@ const App: React.FC = () => {
                     pages.push({
                         id: `${Date.now()}-${i}`,
                         originalIndex: i,
-                        rotation: doc.getPage(i).getRotation().angle,
+                        // Leia a rotação real da página de pdf.js
+                        rotation: page.rotate,
                         thumbnailUrl: canvas.toDataURL(),
                     });
                 }
