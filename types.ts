@@ -2,6 +2,7 @@
 export interface PageInfo {
     id: string;
     originalIndex: number;
+    sourceDocIndex: number;
     rotation: number;
     thumbnailUrl: string;
 }
