@@ -1,0 +1,5 @@
+{
+  "name": "Editor de PDF Pro",
+  "description": "Uma aplicação web para facilmente editar, rotacionar, reordenar e excluir páginas de arquivos PDF com uma interface de arrastar e soltar.",
+  "requestFramePermissions": []
+}
