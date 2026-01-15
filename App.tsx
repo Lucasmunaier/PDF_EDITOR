@@ -441,6 +441,9 @@ const App: React.FC = () => {
             <main className="flex-grow container mx-auto p-4 md:p-8 flex flex-col">
                 {renderContent()}
             </main>
+            <footer className="py-4 px-6 text-center text-gray-500 text-sm border-t border-gray-700/50">
+                Criado por: Lucas Santos Munaier
+            </footer>
         </div>
     );
 };
