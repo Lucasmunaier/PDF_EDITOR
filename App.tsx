@@ -144,13 +144,19 @@ const App: React.FC = () => {
             let doc;
 
             if (useOcr) {
+                setLoadingMessage('Inicializando o motor de OCR...');
                 const worker = await Tesseract.createWorker('por', 1, {
                     logger: (m: any) => {
-                        if (m.status === 'recognizing text') {
+                         if (m.status === 'loading language traineddata') {
+                             setLoadingMessage(`Carregando idioma... (${(m.progress * 100).toFixed(0)}%)`);
+                        } else if (m.status === 'recognizing text') {
                             setLoadingMessage(`Reconhecendo página... (${(m.progress * 100).toFixed(0)}%)`);
                         }
                     },
                 });
+                await worker.loadLanguage('por');
+                await worker.initialize('por');
+
                 const pdfJsDoc = await pdfjsLib.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
                 const paragraphs: any[] = [];
                 for (let i = 0; i < pdfJsDoc.numPages; i++) {
